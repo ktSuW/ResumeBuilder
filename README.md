@@ -83,3 +83,77 @@ The resume builder API enables the users to select the resume template and add r
     - We all know that APIs operate through ‘requests’ and ‘responses.’ And when an API requests to access data from a web application or server, a response is always sent back. The location where the API sends a request and where the response emanates is what is known as an endpoint. Reputedly, the endpoint is the most crucial part of the API documentation since it’s what the developer will implement to make their requests.
 
   - <img src="img/rest-endpoint.png" width=800 >
+
+- Clean architecture : middle level is domain
+  - Monolithic: Presentation, Business Logic (Application), Database
+  - N-layer Architecture
+    - total number of layers ==> N 
+  - Microservices - loosely 
+- Tier means physical machine
+  - Three layer applications and deploy it into one machine 
+  - Two tiers in two machines 
+    - Layers for separating each layer has their own responsibility 
+  - DOMAIN centric architecture (Onion architecture) is a sub category of clean architecture  
+    - Domain layer - Domain driver design, business entity
+      - Entity can be objects with methods 
+    - Application layer - Application specific business layer 
+    - Presentation layer - 
+      - UI
+      - Infrastructure - e.g. Entity framework core, mysql 
+
+- WebAPI is presentation layer.
+- Domain Resume builder 
+  - Entities => table 
+  - [My Perfect Resume](https://www.myperfectresume.com/build-resume/section/cntc)
+  - Business entitiies only in the Domain. Entity framework will not be in this folder to apply clean code 
+  - Persistence folder => will help to connect with DB
+
+- Code First approach will be used to make this app.
+- ToDo list 
+    - Make a class diagram : UML diagram 
+    - UserProfile
+    - Education 
+
+- Dependencies => Add project reference 
+
+- ***What is Generic class?*** It decouple from data type.
+  - General class 
+  - closed the modification
+
+  ```
+  class UserProfile <T> {
+    public T MobileNumber {get; set;}
+  }
+
+  UserProfile sam = new UserProfile<int>();
+  same.MobileNumber = 123456;
+
+  UserProfile waqas = new UserProfile<string>();
+  waqas.MobileNumber = "1237989";
+
+  ```
+  - ctrl + . => implement interface.
+  - always implement the interface 
+- CQRS - in Application 
+  - Fetch query : Read 
+  - Command query will be created : Add, Update, Delete
+- Application DB
+- Constructor types - ToDo
+  - parameterised 
+  ```
+    class Person {
+      //Fields 
+      private string Name;
+      private string Country;
+
+      public Person(string name, string country){
+        Name = name;
+        Country = this.country;
+      }
+    }
+
+    Person p1 = new Person()
+
+  ```
+
+- [DbContext](https://github.com/ktSuW/AvaRent/blob/main/AvaRent.Data/AvaRentDbContext.cs)
